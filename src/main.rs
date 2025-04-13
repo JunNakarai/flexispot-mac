@@ -2,6 +2,7 @@ use std::collections::HashMap;
 use std::time::Duration;
 use std::io::Write;
 use std::thread::sleep;
+use std::env;
 
 fn supported_commands() -> HashMap<&'static str, &'static [u8]> {
     HashMap::from([
@@ -16,7 +17,12 @@ fn supported_commands() -> HashMap<&'static str, &'static [u8]> {
 
 fn main(){
     let port_path = "/dev/tty.usbserial-FTAOF5B9";
-    let command_key = "up";
+    let args: Vec<String> = env::args().collect();
+    if args.len() < 2 {
+        eprintln!("Usage: {} <command>", args[0]);
+        return;
+    }
+    let command_key = &args[1].as_str();
 
     let commands = supported_commands();
     let command = match commands.get(command_key){
