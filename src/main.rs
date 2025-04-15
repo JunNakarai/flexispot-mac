@@ -1,5 +1,5 @@
 use std::env;
-use flexispot_mac::run_frexispot_command;
+use flexispot_mac::run_flexispot_command;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -9,7 +9,7 @@ fn main() {
     }
     let command_key = &args[1].as_str();
     
-    if let Err(e) = run_frexispot_command(command_key) {
+    if let Err(e) = run_flexispot_command(command_key) {
         eprintln!("Error: {}", e);
     } else {
         println!("Command {} executed successfully", command_key);
