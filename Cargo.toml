@@ -5,3 +5,7 @@ edition = "2021"
 
 [dependencies]
 serialport = "4.7.1"
+
+[lib]
+name = "flexispot_mac"
+path = "src/lib.rs"
