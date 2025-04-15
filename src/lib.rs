@@ -1,7 +1,7 @@
 pub mod command;
 pub mod serial;
 
-pub fn run_frexispot_command(command_key: &str)-> Result<(), String> {
+pub fn run_flexispot_command(command_key: &str)-> Result<(), String> {
     let port_path = "/dev/tty.usbserial-FTAOF5B9";
     let commands = command::supported_commands();
     let command = match commands.get(command_key) {
