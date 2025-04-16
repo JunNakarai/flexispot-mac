@@ -8,8 +8,15 @@ fn main() {
         return;
     }
     let command_key = &args[1].as_str();
-    
-    if let Err(e) = run_flexispot_command(command_key) {
+    let default_port = "/dev/tty.usbserial-FTAOF5B9";
+    //let port_path = &args[2].as_str();
+    let port_path = if args.len() > 2 {
+        &args[2].as_str()
+    } else {
+        default_port
+    };
+
+    if let Err(e) = run_flexispot_command(command_key, port_path) {
         eprintln!("Error: {}", e);
     } else {
         println!("Command {} executed successfully", command_key);
